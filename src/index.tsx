@@ -11,8 +11,10 @@ import 'firebase/messaging'
 import { getFirestore, collection, getDocs, doc , setDoc } from 'firebase/firestore/lite';
 import { getDatabase, ref, set, child, get, onValue, } from "firebase/database";
 import {HashRouter} from "react-router-dom";
+import {store} from "./App/store";
+import {Provider} from "react-redux";
 
-const firebaseConfig = {
+export const firebaseConfig = {
     apiKey: "AIzaSyCIuR9mkIDZZRCx5efJWAxs-nF6i2jRhK8",
     authDomain: "test-shop-e279d.firebaseapp.com",
     projectId: "test-shop-e279d",
@@ -21,6 +23,10 @@ const firebaseConfig = {
     appId: "1:964068195360:web:21a2f8a6fc029cc14d9045",
     measurementId: "G-XXMHLZ9VSR"
 };
+
+const app = initializeApp(firebaseConfig);
+export const db:any = getFirestore(app);
+export const database = getDatabase(app);
 
 /*const app = initializeApp(firebaseConfig);
 const db:any = getFirestore(app);
@@ -93,8 +99,10 @@ const root = ReactDOM.createRoot(
 root.render(
 
       <HashRouter>
-          {/*<button onClick={onClickHandler}>button</button>*/}
-          <App />
+          <Provider store={store}>
+              {/*<button onClick={onClickHandler}>button</button>*/}
+              <App />
+          </Provider>
       </HashRouter>
 
 

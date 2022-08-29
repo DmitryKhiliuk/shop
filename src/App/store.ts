@@ -1,9 +1,10 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import thunkMiddleware from 'redux-thunk'
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
+import {productItemsReducer} from "../Features/MainPage/mainPage-reducer";
 
 export const rootReducer = combineReducers({
-
+    main: productItemsReducer
 })
 
 

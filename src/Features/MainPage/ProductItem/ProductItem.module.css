@@ -1,0 +1,17 @@
+.item {
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.image {
+    height: 250px;
+}
+.description {
+    overflow: auto;
+    height: 120px;
+    padding-top: 5px;
+}
+.cost {
+    padding-bottom: 10px;
+}

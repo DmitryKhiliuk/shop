@@ -24,7 +24,7 @@ export const Header = () => {
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        SHOP
+                        MOBILE SHOP
                     </Typography>
                     <IconButton aria-label="cart">
                     <StyledBadge badgeContent={0} max={9999} color="secondary">
