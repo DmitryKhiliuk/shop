@@ -8,8 +8,11 @@ import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
+type HeaderType = {
+    openCart: () => void
+}
 
-export const Header = () => {
+export const Header = (props: HeaderType) => {
 
     const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
         '& .MuiBadge-badge': {
@@ -19,6 +22,10 @@ export const Header = () => {
             padding: '0 4px',
         },
     }));
+
+    const onClickHandler = () => {
+        props.openCart()
+    }
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
@@ -28,7 +35,7 @@ export const Header = () => {
                     </Typography>
                     <IconButton aria-label="cart">
                     <StyledBadge badgeContent={0} max={9999} color="secondary">
-                        <ShoppingCartIcon fontSize={'large'} color={'inherit'}/>
+                        <ShoppingCartIcon fontSize={'large'} color={'inherit'} onClick={onClickHandler}/>
                     </StyledBadge>
                 </IconButton>
                 </Toolbar>
