@@ -2,11 +2,16 @@ import React, {useEffect} from 'react';
 import {Button, Typography} from "@mui/material";
 import s from './ProductItem.module.css'
 import {useAppDispatch} from "../../../App/store";
-import {changeStatusProductItemTC, fetchProductItemTC, ProductItemsType} from "../mainPage-reducer";
+import {
+    changeStatusProductItemTC,
+    fetchProductItemTC,
+    ProductItemsDomainType,
+    ProductItemsType
+} from "../mainPage-reducer";
 
 
 type PIType = {
-    productItem: ProductItemsType
+    productItem: ProductItemsDomainType
 }
 
 export const ProductItem = (props:PIType) => {

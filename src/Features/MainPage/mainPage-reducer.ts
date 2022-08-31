@@ -6,19 +6,17 @@ export type ProductItemsType = {
     name: string,
     cost: number,
     description: string,
-    status: boolean,
     image: string
     id: string
 }
 
-export type ItemsType = ProductItemsType[]
 
-export const fetchProductItemTC = createAsyncThunk<ItemsType>('mainPage/fetchProductItemTC', async (param, thunkAPI) => {
+export const fetchProductItemTC = createAsyncThunk<ProductItemsType[]>('mainPage/fetchProductItemTC', async (param, thunkAPI) => {
     const itemCol = collection(db, 'ProductItem');
     const itemSnapshot = await getDocs(itemCol);
     try {
         const items = itemSnapshot.docs.map(doc => doc.data())
-        return items as ItemsType
+        return items as ProductItemsType[]
     } catch (error) {
         return []
     }
@@ -37,13 +35,13 @@ export const changeStatusProductItemTC = createAsyncThunk('mainPage/changeStatus
 
 export const slice = createSlice({
     name: 'mainPage',
-    initialState: {} as ItemsType,
+    initialState: {} as ProductItemsDomainType[],
     reducers: {},
     extraReducers: builder => {
         builder
             .addCase(fetchProductItemTC.fulfilled, (state, {payload}) => {
                 console.log('fetch')
-                return state = payload ? payload : state
+                payload.forEach((el) => ({...el, status: false, count: 1}))
             })
             .addCase(changeStatusProductItemTC.fulfilled, (state, action) => {
 
@@ -58,3 +56,8 @@ export const slice = createSlice({
 })
 
 export const productItemsReducer = slice.reducer
+
+export type ProductItemsDomainType = ProductItemsType & {
+    status: boolean
+    count: number
+}

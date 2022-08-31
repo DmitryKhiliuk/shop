@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
-import {changeStatusProductItemTC, ProductItemsType} from "../../MainPage/mainPage-reducer";
+import {changeStatusProductItemTC, ProductItemsDomainType, ProductItemsType} from "../../MainPage/mainPage-reducer";
 import s from './CartItem.module.css'
 import {Button, ButtonGroup, Typography} from "@mui/material";
 import {useAppDispatch} from "../../../App/store";
 
 type CartItemType = {
-    productItem: ProductItemsType
+    productItem: ProductItemsDomainType
 }
 
 export const CartItem = (props: CartItemType) => {
