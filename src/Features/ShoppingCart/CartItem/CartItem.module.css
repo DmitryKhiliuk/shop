@@ -1,0 +1,34 @@
+.cartItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+
+}
+.image {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0 10px 0;
+}
+img {
+    height: 100%;
+    width: auto;
+}
+.name {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-basis:50%;
+
+}
+
+.pageNumber {
+    width: 30px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

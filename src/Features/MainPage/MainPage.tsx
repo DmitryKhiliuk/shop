@@ -10,7 +10,6 @@ export const MainPage = () => {
     const productItems = useAppSelector((state) => state.main)
     const dispatch = useAppDispatch();
 
-
     useEffect(() => {
         dispatch(fetchProductItemTC())
     },[])
