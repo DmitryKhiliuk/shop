@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import {ProductItemsType} from "../../MainPage/mainPage-reducer";
+import {changeStatusProductItemTC, ProductItemsType} from "../../MainPage/mainPage-reducer";
 import s from './CartItem.module.css'
 import {Button, ButtonGroup, Typography} from "@mui/material";
+import {useAppDispatch} from "../../../App/store";
 
 type CartItemType = {
     productItem: ProductItemsType
@@ -11,6 +12,8 @@ export const CartItem = (props: CartItemType) => {
 
     const {id, status, name, description, cost, image} = props.productItem
 
+    const dispatch = useAppDispatch();
+
     const [value, setValue] = useState(1)
 
     const onInc = () => {
@@ -18,6 +21,10 @@ export const CartItem = (props: CartItemType) => {
     }
     const onDec = () => {
         setValue(value - 1)
+    }
+
+    if (value === 0) {
+        dispatch(changeStatusProductItemTC({id, status}))
     }
 
     return (
@@ -37,9 +44,9 @@ export const CartItem = (props: CartItemType) => {
                     aria-label="Disabled elevation buttons"
                     size={'small'}
                 >
-                    <Button onClick={onInc}>+</Button>
-                    <div className={s.pageNumber}>{value}</div>
                     <Button onClick={onDec}>-</Button>
+                    <div className={s.pageNumber}>{value}</div>
+                    <Button onClick={onInc}>+</Button>
                 </ButtonGroup>
             </div>
 

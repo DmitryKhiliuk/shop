@@ -27,6 +27,8 @@ export const Form = () => {
         },
         onSubmit: (values, formikHelpers: FormikHelpers<FormValuesType>) => {
             console.log(values)
+            formikHelpers.resetForm()
+
         }
     })
 
@@ -56,7 +58,7 @@ export const Form = () => {
                             variant={'standard'}
                             {...formik.getFieldProps("phone")}
                         />
-                        <Button type={'submit'} variant={'contained'} color={'primary'}>Order</Button>
+                        <Button  type={'submit'} variant={'contained'} color={'primary'} style={{marginTop: '10px'}}>Order</Button>
                     </FormGroup>
                 </FormControl>
             </form>

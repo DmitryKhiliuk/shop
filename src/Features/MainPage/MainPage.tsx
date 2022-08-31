@@ -5,6 +5,8 @@ import {useAppDispatch, useAppSelector} from "../../App/store";
 import {fetchProductItemTC} from "./mainPage-reducer";
 import s from './MainPage.module.css'
 
+
+
 export const MainPage = () => {
 
     const productItems = useAppSelector((state) => state.main)
