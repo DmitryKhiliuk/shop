@@ -17,6 +17,7 @@ export const ShoppingCart = () => {
     }
 
     const productItemsForCart = productItems.length && productItems.filter((el) => el.status)
+    console.log(productItemsForCart)
     let costForTotal = 0
     productItems.length && productItems.map((el) => el.status ? costForTotal += el.cost : el)
 
@@ -25,20 +26,25 @@ export const ShoppingCart = () => {
             <Button  variant="contained" startIcon={<ArrowBackIcon />} onClick={onClickHandler}>
                 Back
             </Button>
-            <div className={s.content}>
-                <div className={s.items}>
+            {productItemsForCart && productItemsForCart.length !== 0 ?
+                <div className={s.content}>
+                    <div className={s.items}>
                         {productItemsForCart && productItemsForCart.map((item) => {
                             return item.status && <Paper elevation={3} key={item.id}> <CartItem productItem={item}
-                                                            />
+                            />
                             </Paper>
                         })}
-                </div>
-                <div className={s.form}>
-                    <Paper elevation={3} style={{width:'100%'}}>
-                        <Form/>
-                    </Paper>
-                </div>
-            </div>
+                    </div>
+                    <div className={s.form}>
+                        <Paper elevation={3} style={{width:'100%'}}>
+                            <Form/>
+                        </Paper>
+                    </div>
+                </div>:
+                <Typography variant={'h5'} style={{height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                    Your basket is empty, please add an item to checkout.</Typography>
+            }
+
             <Typography variant={'h4'} style={{fontWeight: 'bold', textDecoration: 'underline'}}>
                 {'Total ' + costForTotal + '$'}
             </Typography>

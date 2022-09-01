@@ -18,7 +18,7 @@ export const Header = (props: HeaderType) => {
     const productItems = useAppSelector((state) => state.main)
 
     let costForCart = 0
-    productItems.length && productItems.map((el) => el.status ? costForCart += el.cost : el)
+    productItems.length && productItems.map((el) => el.status ? costForCart += el.cost * el.count : el)
 
     const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
         '& .MuiBadge-badge': {
@@ -33,14 +33,14 @@ export const Header = (props: HeaderType) => {
         props.openCart()
     }
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
+        <Box sx={{ flexGrow: 1 , marginBottom: '65px'}}>
+            <AppBar position="fixed">
                 <Toolbar>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         MOBILE SHOP
                     </Typography>
                     <IconButton aria-label="cart">
-                    <StyledBadge badgeContent={costForCart + '$'} max={9999} color="secondary">
+                    <StyledBadge badgeContent={costForCart!==0?costForCart + '$':costForCart} max={9999} color="secondary">
                         <ShoppingCartIcon fontSize={'large'} color={'inherit'} onClick={onClickHandler}/>
                     </StyledBadge>
                 </IconButton>

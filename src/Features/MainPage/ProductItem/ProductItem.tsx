@@ -42,7 +42,7 @@ export const ProductItem = (props:PIType) => {
             </Typography>
             {!status ?
                 <Button variant="contained" onClick={onClickHandler}>Add to cart</Button> :
-                <Button variant="contained" color={'success'} onClick={onClickHandler}>In the cart</Button>
+                <Button variant="contained" color={'success'} onClick={onClickHandler}>In the cart (cancel)</Button>
             }
         </div>
     );
