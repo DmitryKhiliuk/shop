@@ -1,5 +1,10 @@
-import React, {useState} from 'react';
-import {changeStatusProductItemTC, ProductItemsDomainType, ProductItemsType} from "../../MainPage/mainPage-reducer";
+import React from 'react';
+import {
+    changeStatusProductItemAC,
+    decCountAC,
+    incCountAC,
+    ProductItemsDomainType
+} from "../../MainPage/mainPage-reducer";
 import s from './CartItem.module.css'
 import {Button, ButtonGroup, Typography} from "@mui/material";
 import {useAppDispatch} from "../../../App/store";
@@ -14,17 +19,16 @@ export const CartItem = (props: CartItemType) => {
 
     const dispatch = useAppDispatch();
 
-    const [value, setValue] = useState(1)
-
     const onInc = () => {
-        setValue(value + 1)
+        dispatch(incCountAC({id}))
     }
     const onDec = () => {
-        setValue(value - 1)
+        dispatch(decCountAC({id}))
     }
 
-    if (value === 0) {
-        dispatch(changeStatusProductItemTC({id, status}))
+    if (props.productItem.count === 0) {
+        dispatch(changeStatusProductItemAC({id, status}))
+        dispatch(incCountAC({id}))
     }
 
     return (
@@ -45,7 +49,7 @@ export const CartItem = (props: CartItemType) => {
                     size={'small'}
                 >
                     <Button onClick={onDec}>-</Button>
-                    <div className={s.pageNumber}>{value}</div>
+                    <div className={s.pageNumber}>{props.productItem.count}</div>
                     <Button onClick={onInc}>+</Button>
                 </ButtonGroup>
             </div>

@@ -13,7 +13,7 @@ export const MainPage = () => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        if (!productItems) {
+        if (!productItems.length) {
             dispatch(fetchProductItemTC())
         }
     },[])

@@ -1,13 +1,8 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Button, Typography} from "@mui/material";
 import s from './ProductItem.module.css'
 import {useAppDispatch} from "../../../App/store";
-import {
-    changeStatusProductItemTC,
-    fetchProductItemTC,
-    ProductItemsDomainType,
-    ProductItemsType
-} from "../mainPage-reducer";
+import {changeStatusProductItemAC, ProductItemsDomainType} from "../mainPage-reducer";
 
 
 type PIType = {
@@ -22,9 +17,8 @@ export const ProductItem = (props:PIType) => {
     const dispatch = useAppDispatch();
 
     const onClickHandler = () => {
-        dispatch(changeStatusProductItemTC({id, status}))
+        dispatch(changeStatusProductItemAC({id, status}))
     }
-
 
     return (
         <div className={s.item}>

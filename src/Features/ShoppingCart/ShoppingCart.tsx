@@ -19,7 +19,7 @@ export const ShoppingCart = () => {
     const productItemsForCart = productItems.length && productItems.filter((el) => el.status)
     console.log(productItemsForCart)
     let costForTotal = 0
-    productItems.length && productItems.map((el) => el.status ? costForTotal += el.cost : el)
+    productItems.length && productItems.map((el) => el.status ? costForTotal += el.cost* el.count : el)
 
     return (
         <div className={s.cart}>
