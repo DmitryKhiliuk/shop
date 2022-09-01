@@ -1,8 +1,7 @@
-import React, {useEffect} from 'react';
-import s from'./ShoppingCart.module.css'
-import {useAppDispatch, useAppSelector} from "../../App/store";
+import React from 'react';
+import s from './ShoppingCart.module.css'
+import {useAppSelector} from "../../App/store";
 import {CartItem} from "./CartItem/CartItem";
-import {fetchProductItemTC} from "../MainPage/mainPage-reducer";
 import {Button, Paper, Typography} from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {useNavigate} from "react-router-dom";
@@ -11,12 +10,7 @@ import {Form} from "./Form/Form";
 export const ShoppingCart = () => {
 
     const productItems = useAppSelector((state) => state.main)
-    const dispatch = useAppDispatch();
     const navigate = useNavigate();
-
-    useEffect(() => {
-        dispatch(fetchProductItemTC())
-    },[])
 
     const onClickHandler = () => {
         navigate('/', {replace:true})

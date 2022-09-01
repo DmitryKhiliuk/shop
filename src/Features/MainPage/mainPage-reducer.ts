@@ -40,8 +40,7 @@ export const slice = createSlice({
     extraReducers: builder => {
         builder
             .addCase(fetchProductItemTC.fulfilled, (state, {payload}) => {
-                console.log('fetch')
-                payload.forEach((el) => ({...el, status: false, count: 1}))
+                return payload.map((el) => ({...el, status: false, count: 1}))
             })
             .addCase(changeStatusProductItemTC.fulfilled, (state, action) => {
 
@@ -50,7 +49,6 @@ export const slice = createSlice({
                 if (item !== undefined) {
                     item.status = action.payload.resStatus
                 }
-
             })
     }
 })
