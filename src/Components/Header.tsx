@@ -3,8 +3,8 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Badge, { BadgeProps } from '@mui/material/Badge';
-import { styled } from '@mui/material/styles';
+import Badge, {BadgeProps} from '@mui/material/Badge';
+import {styled} from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import {useAppSelector} from "../App/store";
@@ -15,10 +15,10 @@ type HeaderType = {
 
 export const Header = (props: HeaderType) => {
 
-    const productItems = useAppSelector((state) => state.main)
+    const cart = useAppSelector((state) => state.cart)
 
     let costForCart = 0
-    productItems.length && productItems.map((el) => el.status ? costForCart += el.cost * el.count : el)
+    cart.length && cart.map((el) => costForCart += el.cost * el.count)
     console.log(costForCart)
 
     const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({

@@ -1,8 +1,9 @@
 import React from 'react';
 import {Button, Typography} from "@mui/material";
 import s from './ProductItem.module.css'
-import {useAppDispatch} from "../../../App/store";
-import {changeStatusProductItemAC, ProductItemsDomainType} from "../mainPage-reducer";
+import {useAppDispatch, useAppSelector} from "../../../App/store";
+import {ProductItemsDomainType} from "../productItems-reducer";
+import {addToCartAC, removeFromCartAC} from "../../ShoppingCart/cart-reducer";
 
 
 type PIType = {
@@ -14,10 +15,15 @@ export const ProductItem = (props:PIType) => {
 
     const {id, status, name, description, cost, image} = props.productItem
 
+    const cart = useAppSelector((state) => state.cart)
     const dispatch = useAppDispatch();
 
+    let productStatus = cart.find((el) => el.id === id)
     const onClickHandler = () => {
-        dispatch(changeStatusProductItemAC({id, status}))
+        !productStatus ?
+            dispatch(addToCartAC({cartItem: props.productItem})):
+            dispatch(removeFromCartAC({id}))
+
     }
 
     return (
@@ -34,7 +40,7 @@ export const ProductItem = (props:PIType) => {
             <Typography variant={'h4'} className={s.cost}>
                 {cost + '$'}
             </Typography>
-            {!status ?
+            {!productStatus ?
                 <Button variant="contained" onClick={onClickHandler}>Add to cart</Button> :
                 <Button variant="contained" color={'success'} onClick={onClickHandler}>In the cart (cancel)</Button>
             }

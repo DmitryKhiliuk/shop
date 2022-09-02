@@ -9,28 +9,28 @@ import {Form} from "./Form/Form";
 
 export const ShoppingCart = () => {
 
-    const productItems = useAppSelector((state) => state.main)
+    const cart = useAppSelector((state) => state.cart)
     const navigate = useNavigate();
 
     const onClickHandler = () => {
         navigate('/', {replace:true})
     }
 
-    const productItemsForCart = productItems.length && productItems.filter((el) => el.status)
-    console.log(productItemsForCart)
+    //const productItemsForCart = cart.length && cart.filter((el) => el.status)
+    console.log(cart)
     let costForTotal = 0
-    productItems.length && productItems.map((el) => el.status ? costForTotal += el.cost* el.count : el)
+    cart.length && cart.map((el) => costForTotal += el.cost* el.count)
 
     return (
         <div className={s.cart}>
             <Button  variant="contained" startIcon={<ArrowBackIcon />} onClick={onClickHandler}>
                 Back
             </Button>
-            {productItemsForCart && productItemsForCart.length !== 0 ?
+            {cart && cart.length !== 0 ?
                 <div className={s.content}>
                     <div className={s.items}>
-                        {productItemsForCart && productItemsForCart.map((item) => {
-                            return item.status && <Paper elevation={3} key={item.id}> <CartItem productItem={item}
+                        {cart && cart.map((item) => {
+                            return <Paper elevation={3} key={item.id}> <CartItem cart={item}
                             />
                             </Paper>
                         })}

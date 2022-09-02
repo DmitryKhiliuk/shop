@@ -25,21 +25,14 @@ export const fetchProductItemTC = createAsyncThunk<ProductItemsType[]>('mainPage
 
 
 export const slice = createSlice({
-    name: 'mainPage',
+    name: 'productItems',
     initialState: {} as ProductItemsDomainType[],
     reducers: {
         changeStatusProductItemAC(state, action: PayloadAction<{ id: string, status: boolean }>) {
             const item = state.find((el) => el.id === action.payload.id)
             action.payload.status ? item!.status = false : item!.status = true
         },
-        incCountAC(state, action: PayloadAction<{ id: string }>) {
-            const item = state.find((el) => el.id === action.payload.id)
-            item && ++item.count
-        },
-        decCountAC(state, action: PayloadAction<{ id: string }>) {
-            const item = state.find((el) => el.id === action.payload.id)
-            item && --item.count
-        },
+
 
     },
     extraReducers: builder => {
@@ -54,8 +47,7 @@ export const slice = createSlice({
 export const productItemsReducer = slice.reducer
 export const {
     changeStatusProductItemAC,
-    incCountAC,
-    decCountAC
+
 } = slice.actions
 
 export type ProductItemsDomainType = ProductItemsType & {

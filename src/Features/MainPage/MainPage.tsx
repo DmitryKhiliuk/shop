@@ -2,20 +2,17 @@ import React, {useEffect} from 'react';
 import {ProductItem} from "./ProductItem/ProductItem";
 import {Grid, Paper} from "@mui/material";
 import {useAppDispatch, useAppSelector} from "../../App/store";
-import {fetchProductItemTC} from "./mainPage-reducer";
+import {fetchProductItemTC} from "./productItems-reducer";
 import s from './MainPage.module.css'
-
 
 
 export const MainPage = () => {
 
-    const productItems = useAppSelector((state) => state.main)
+    const productItems = useAppSelector((state) => state.items)
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        if (!productItems.length) {
             dispatch(fetchProductItemTC())
-        }
     },[])
 
     console.log(productItems)
