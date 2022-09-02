@@ -5,7 +5,7 @@ import {CartItem} from "./CartItem/CartItem";
 import {Button, Paper, Typography} from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {useNavigate} from "react-router-dom";
-import {Form} from "./Form/Form";
+import {FormCart} from "./Form/FormCart";
 
 export const ShoppingCart = () => {
 
@@ -36,8 +36,8 @@ export const ShoppingCart = () => {
                         })}
                     </div>
                     <div className={s.form}>
-                        <Paper elevation={3} style={{width:'100%'}}>
-                            <Form/>
+                        <Paper elevation={3} style={{width:'100%', padding: '10px'}}>
+                            <FormCart/>
                         </Paper>
                     </div>
                 </div>:
