@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {db} from "../../index";
 import {collection, getDocs} from "firebase/firestore/lite";
+import {setAppErrorAC, setAppStatusAC} from "../../App/app-reducer";
 
 export type ProductItemsType = {
     name: string,
@@ -12,14 +13,18 @@ export type ProductItemsType = {
 
 
 export const fetchProductItemTC = createAsyncThunk<ProductItemsType[]>('mainPage/fetchProductItemTC', async (param, thunkAPI) => {
+    thunkAPI.dispatch(setAppStatusAC({status: 'loading'}))
     const itemCol = collection(db, 'ProductItem');
     const itemSnapshot = await getDocs(itemCol);
     try {
+        thunkAPI.dispatch(setAppStatusAC({status: 'succeeded'}))
         const items = itemSnapshot.docs.map(doc => doc.data())
         console.log('fetch')
         return items as ProductItemsType[]
     } catch (error) {
-        return []
+        thunkAPI.dispatch(setAppErrorAC({error: 'Some error occurred'}))
+        thunkAPI.dispatch(setAppStatusAC({status: 'failed'}))
+        return thunkAPI.rejectWithValue({error, fieldsErrors: undefined})
     }
 })
 
@@ -32,8 +37,6 @@ export const slice = createSlice({
             const item = state.find((el) => el.id === action.payload.id)
             action.payload.status ? item!.status = false : item!.status = true
         },
-
-
     },
     extraReducers: builder => {
         builder

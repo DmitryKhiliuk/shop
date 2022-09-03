@@ -8,6 +8,8 @@ import {styled} from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import {useAppSelector} from "../App/store";
+import {LinearProgress} from "@mui/material";
+import {ErrorSnackbar} from "./ErrorSnackbar";
 
 type HeaderType = {
     openCart: () => void
@@ -16,6 +18,7 @@ type HeaderType = {
 export const Header = (props: HeaderType) => {
 
     const cart = useAppSelector((state) => state.cart)
+    const status = useAppSelector((state) => state.app.status)
 
     let costForCart = 0
     cart.length && cart.map((el) => costForCart += el.cost * el.count)
@@ -35,6 +38,7 @@ export const Header = (props: HeaderType) => {
     }
     return (
         <Box sx={{ flexGrow: 1 , marginBottom: '65px'}}>
+            <ErrorSnackbar/>
             <AppBar position="fixed">
                 <Toolbar>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
@@ -46,6 +50,7 @@ export const Header = (props: HeaderType) => {
                     </StyledBadge>
                 </IconButton>
                 </Toolbar>
+                {status === 'loading' && <LinearProgress/>}
             </AppBar>
         </Box>
     );

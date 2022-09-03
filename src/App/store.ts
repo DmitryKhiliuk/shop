@@ -5,8 +5,10 @@ import {FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, RE
 import {productItemsReducer} from "../Features/MainPage/productItems-reducer";
 import storage from 'redux-persist/lib/storage'
 import {cartReducer} from "../Features/ShoppingCart/cart-reducer";
+import {appReducer} from "./app-reducer";
 
 export const rootReducer = combineReducers({
+    app: appReducer,
     items: productItemsReducer,
     cart: cartReducer
 })
