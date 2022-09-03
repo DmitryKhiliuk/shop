@@ -9,7 +9,7 @@ import {appReducer} from "./app-reducer";
 
 export const rootReducer = combineReducers({
     app: appReducer,
-    items: productItemsReducer,
+    items: productItemsReducer || (() => null), // for testing
     cart: cartReducer
 })
 

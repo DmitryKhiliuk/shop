@@ -4,9 +4,6 @@ import {Navigate, Route, Routes, useNavigate} from "react-router-dom";
 import {MainPage} from "../Features/MainPage/MainPage";
 import {ShoppingCart} from "../Features/ShoppingCart/ShoppingCart";
 import {Header} from "../Components/Header";
-import {useAppSelector} from "./store";
-import {LinearProgress} from "@mui/material";
-
 
 
 function App() {

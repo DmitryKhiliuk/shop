@@ -22,7 +22,6 @@ export const Header = (props: HeaderType) => {
 
     let costForCart = 0
     cart.length && cart.map((el) => costForCart += el.cost * el.count)
-    console.log(costForCart)
 
     const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
         '& .MuiBadge-badge': {

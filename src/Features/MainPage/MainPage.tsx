@@ -15,8 +15,6 @@ export const MainPage = () => {
             dispatch(fetchProductItemTC())
     },[])
 
-    console.log(productItems)
-
     return (
         <div>
             <Grid container spacing={3} justifyContent={'center'}>

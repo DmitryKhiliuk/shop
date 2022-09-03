@@ -19,7 +19,6 @@ export const fetchProductItemTC = createAsyncThunk<ProductItemsType[]>('mainPage
     try {
         thunkAPI.dispatch(setAppStatusAC({status: 'succeeded'}))
         const items = itemSnapshot.docs.map(doc => doc.data())
-        console.log('fetch')
         return items as ProductItemsType[]
     } catch (error) {
         thunkAPI.dispatch(setAppErrorAC({error: 'Some error occurred'}))

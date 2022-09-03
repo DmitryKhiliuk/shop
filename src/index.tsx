@@ -31,7 +31,7 @@ export const database = getDatabase(app);
 
 
 const root = ReactDOM.createRoot(
-    document.getElementById('root') as HTMLElement
+    document.getElementById('root') as HTMLElement || document.createElement('div') // for testing
 );
 root.render(
     <HashRouter>

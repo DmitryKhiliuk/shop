@@ -15,9 +15,6 @@ export const ShoppingCart = () => {
     const onClickHandler = () => {
         navigate('/', {replace:true})
     }
-
-    //const productItemsForCart = cart.length && cart.filter((el) => el.status)
-    console.log(cart)
     let costForTotal = 0
     cart.length && cart.map((el) => costForTotal += el.cost* el.count)
 
