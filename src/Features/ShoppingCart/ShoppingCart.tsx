@@ -6,10 +6,11 @@ import {Button, Paper, Typography} from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {useNavigate} from "react-router-dom";
 import {FormCart} from "./Form/FormCart";
+import {selectCart} from "../../Selectors/selectors";
 
 export const ShoppingCart = () => {
 
-    const cart = useAppSelector((state) => state.cart)
+    const cart = useAppSelector(selectCart)
     const navigate = useNavigate();
 
     const onClickHandler = () => {

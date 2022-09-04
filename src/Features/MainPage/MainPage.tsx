@@ -4,16 +4,17 @@ import {Grid, Paper} from "@mui/material";
 import {useAppDispatch, useAppSelector} from "../../App/store";
 import {fetchProductItemTC} from "./productItems-reducer";
 import s from './MainPage.module.css'
+import {selectItems} from "../../Selectors/selectors";
 
 
 export const MainPage = () => {
 
-    const productItems = useAppSelector((state) => state.items)
+    const productItems = useAppSelector(selectItems)
     const dispatch = useAppDispatch();
 
     useEffect(() => {
             dispatch(fetchProductItemTC())
-    },[])
+    },[dispatch])
 
     return (
         <div>

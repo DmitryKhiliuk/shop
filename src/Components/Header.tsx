@@ -10,6 +10,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import {useAppSelector} from "../App/store";
 import {LinearProgress} from "@mui/material";
 import {ErrorSnackbar} from "./ErrorSnackbar";
+import {selectCart, selectStatus} from "../Selectors/selectors";
 
 type HeaderType = {
     openCart: () => void
@@ -17,8 +18,8 @@ type HeaderType = {
 
 export const Header = (props: HeaderType) => {
 
-    const cart = useAppSelector((state) => state.cart)
-    const status = useAppSelector((state) => state.app.status)
+    const cart = useAppSelector(selectCart)
+    const status = useAppSelector(selectStatus)
 
     let costForCart = 0
     cart.length && cart.map((el) => costForCart += el.cost * el.count)

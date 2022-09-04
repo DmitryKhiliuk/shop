@@ -1,4 +1,4 @@
-import {ProductItemsDomainType, ProductItemsType} from "../MainPage/productItems-reducer";
+import {ProductItemsDomainType} from "../MainPage/productItems-reducer";
 import {v1} from "uuid";
 import {addToCartAC, cartReducer, decCountAC, incCountAC, removeFromCartAC} from "./cart-reducer";
 

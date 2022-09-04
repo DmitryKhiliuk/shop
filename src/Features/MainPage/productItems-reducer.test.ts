@@ -1,18 +1,18 @@
 import {v1} from "uuid";
-import {fetchProductItemTC, productItemsReducer, ProductItemsType} from "./productItems-reducer";
+import {fetchProductItemTC, ProductItemsDomainType, productItemsReducer} from "./productItems-reducer";
 
 
 let productId1: string
 let productId2: string
-let startState: ProductItemsType[] = []
+let startState: ProductItemsDomainType[] = []
 
 
 beforeEach(() => {
     productId1: v1()
     productId2: v1()
     startState = [
-        {id: productId1, name: 'Nokia', cost: 50, description: 'This is very good phone', image: 'image'},
-        {id: productId2, name: 'Integral', cost: 88, description: 'This is not phone', image: 'some image'},
+        {id: productId1, name: 'Nokia', cost: 50, description: 'This is very good phone', image: 'image', status: false, count: 1},
+        {id: productId2, name: 'Integral', cost: 88, description: 'This is not phone', image: 'some image', status: false, count: 1},
     ]
 })
 

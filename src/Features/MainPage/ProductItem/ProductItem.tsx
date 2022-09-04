@@ -4,6 +4,7 @@ import s from './ProductItem.module.css'
 import {useAppDispatch, useAppSelector} from "../../../App/store";
 import {ProductItemsDomainType} from "../productItems-reducer";
 import {addToCartAC, removeFromCartAC} from "../../ShoppingCart/cart-reducer";
+import {selectCart} from "../../../Selectors/selectors";
 
 
 type PIType = {
@@ -15,7 +16,7 @@ export const ProductItem = (props:PIType) => {
 
     const {id, status, name, description, cost, image} = props.productItem
 
-    const cart = useAppSelector((state) => state.cart)
+    const cart = useAppSelector(selectCart)
     const dispatch = useAppDispatch();
 
     let productStatus = cart.find((el) => el.id === id)
